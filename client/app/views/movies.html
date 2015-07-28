@@ -1,1 +1,14 @@
-<p>This is the movies view.</p>
+<table class="table table-stripped">
+	<thead>
+		<th>Title</th>
+		<th>URL</th>
+	</thead>
+</table>
+<tbody>
+<!-- To provide scope for movies, use the controller -->
+	<tr ng-repeat="movie in movies"></tr>
+	<td>{{ movie.title }}</td>
+	<td>{{ movie.url }}</td>
+	</tr>
+</tbody>
+
