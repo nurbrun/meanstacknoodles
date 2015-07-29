@@ -10,7 +10,7 @@
  */
 angular
   .module('clientApp', [
-    'ngRoute'
+    'ngRoute',
     // add restangular here
     'restangular'
   ])
@@ -32,9 +32,21 @@ angular
       .when('/movies', {
         templateUrl: 'views/movies.html',
         controller: 'MoviesCtrl',
-        controllerAs: 'movies'
+        // controllerAs: 'movies'
       })
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+      .factory("MovieRestangular", function(Restangular) {
+        return Restangular.withConfig(function(RestangularConfigurer) {
+          RestangularConfigurer.setRestangularFields({
+            id:'_id'
+          });
+        });
+      })
+      .factory('Movie', function(MovieRestangular){
+        return MovieRestangular.service('movie');
+        // 'movie' points to the api url
+      });
+  
